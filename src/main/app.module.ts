@@ -1,5 +1,5 @@
 import { Module } from '@nestjs/common';
-import { ConfigModule } from '@nestjs/config';
+import { ConfigModule, ConfigService } from '@nestjs/config';
 import { AuthModule } from 'src/auth/auth.module';
 import { AppController } from './app.controller';
 import { AppService } from './app.service';
@@ -9,4 +9,10 @@ import { AppService } from './app.service';
   controllers: [AppController],
   providers: [AppService],
 })
-export class AppModule {}
+export class AppModule {
+  static port: string | number;
+
+  constructor(private readonly config: ConfigService) {
+    AppModule.port = this.config.get<number>('PORT');
+  }
+}
