@@ -8,7 +8,7 @@ import { ConfigService } from '@nestjs/config';
 export class LocalStrategy extends PassportStrategy(Strategy) {
   constructor(private authService: AuthService, configService: ConfigService) {
     super({
-      secretOrKey: configService.get<string>('JWT_SECRET'),
+      secretOrKey: configService.get<string>('jwt.secret'),
     });
   }
 

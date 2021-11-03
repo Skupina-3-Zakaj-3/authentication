@@ -13,6 +13,6 @@ export class AppModule {
   static port: string | number;
 
   constructor(private readonly config: ConfigService) {
-    AppModule.port = this.config.get<number>('PORT');
+    AppModule.port = this.config.get<number>('http.port');
   }
 }
