@@ -7,4 +7,4 @@ http:
   host: 'localhost'
 
 oauth:
-  callback_url: 'http://localhost:3000/redirect' #same as defined in google developer console
+  callback_url: 'http://localhost:3000/auth/google/redirect' #same as defined in google developer console
