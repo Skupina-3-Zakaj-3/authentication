@@ -25,6 +25,19 @@ export class AuthService {
     };
   }
 
+  async createJwt(
+    thirdPartyId: string,
+    name: string,
+    email: string,
+  ): Promise<string> {
+    try {
+      const payload = { thirdPartyId, name, email };
+      return this.jwtService.sign(payload);
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   googleLogin(req) {
     if (!req.user) {
       return 'No user from google';

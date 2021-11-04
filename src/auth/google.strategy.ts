@@ -7,9 +7,9 @@ import { Strategy } from 'passport-google-oauth20';
 export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
   constructor(configService: ConfigService) {
     super({
-      clientID: configService.get<string>('oauth.client_id'),
-      clientSecret: configService.get<string>('oauth.secret'),
-      callbackURL: 'http://localhost:3000/redirect',
+      clientID: configService.get<string>('GOOGLE_CLIENT_ID'),
+      clientSecret: configService.get<string>('GOOGLE_SECRET'),
+      callbackURL: configService.get<string>('oauth.callback_url'),
       scope: ['email', 'profile'],
     });
   }
@@ -19,6 +19,7 @@ export class GoogleStrategy extends PassportStrategy(Strategy, 'google') {
     refreshToken: string,
     profile: any,
   ): Promise<any> {
+    console.log(profile);
     const { name, emails, photos } = profile;
     const user = {
       email: emails[0].value,

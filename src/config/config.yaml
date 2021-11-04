@@ -1,0 +1,10 @@
+jwt:
+  secret: '3b884c26c9f0'
+  expires: '1h'
+
+http:
+  port: 3000
+  host: 'localhost'
+
+oauth:
+  callback_url: 'http://localhost:3000/redirect' #same as defined in google developer console
