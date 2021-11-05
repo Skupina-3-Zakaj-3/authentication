@@ -11,6 +11,6 @@ oauth:
 
 services:
   user:
-    endpoint: 'http://localhost'
+    name: 'user'
     port: 8080
     version: 'v1'

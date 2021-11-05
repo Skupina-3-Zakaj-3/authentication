@@ -11,8 +11,8 @@ export class UsersService {
     private httpService: HttpService,
     private configService: ConfigService,
   ) {
-    this.endpoint = `${this.configService.get<string>(
-      'services.user.endpoint',
+    this.endpoint = `http://${this.configService.get<string>(
+      'services.user.name',
     )}:${this.configService.get(
       'services.user.port',
     )}/${this.configService.get<string>('services.user.version')}/users`;
@@ -23,7 +23,7 @@ export class UsersService {
    * @param googleUser user to be checked if exists or to be created
    * @returns Google user of our app
    */
-  async findOrCreteGoogleUser(googleUser: GoogleUser): Promise<GoogleUser> {
+  async findOrCreateGoogleUser(googleUser: GoogleUser): Promise<GoogleUser> {
     let user;
     try {
       user = await this.httpService.post(this.endpoint, googleUser).toPromise();

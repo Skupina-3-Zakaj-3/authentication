@@ -19,7 +19,7 @@ export class AuthController {
   @Get('google/redirect')
   @UseGuards(GoogleAuthGuard)
   async googleAuthRedirect(@Request() req) {
-    const googleUser = await this.userService.findOrCreteGoogleUser(
+    const googleUser = await this.userService.findOrCreateGoogleUser(
       req.user as GoogleUser,
     );
 
