@@ -1,7 +1,9 @@
 import { HttpService } from '@nestjs/axios';
 import { Injectable } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
+import { lastValueFrom, map } from 'rxjs';
 import { GoogleUser } from 'src/auth/auth.service';
+import { GOOGLE_USER_ENDPOINT } from 'src/config/constants';
 
 @Injectable()
 export class UsersService {
@@ -15,7 +17,9 @@ export class UsersService {
       'services.user.name',
     )}:${this.configService.get(
       'services.user.port',
-    )}/${this.configService.get<string>('services.user.version')}/users`;
+    )}/${this.configService.get<string>(
+      'services.user.version',
+    )}${GOOGLE_USER_ENDPOINT}`;
     console.log(this.endpoint);
   }
   /**
@@ -24,13 +28,19 @@ export class UsersService {
    * @returns Google user of our app
    */
   async findOrCreateGoogleUser(googleUser: GoogleUser): Promise<GoogleUser> {
-    let user;
+    let userResponseData: GoogleUser;
     try {
-      user = await this.httpService.post(this.endpoint, googleUser).toPromise();
-      console.log(user);
+      userResponseData = await lastValueFrom(
+        this.httpService.post(this.endpoint, googleUser).pipe(
+          map((res) => {
+            return res.data as GoogleUser;
+          }),
+        ),
+      );
     } catch (error) {
       console.log(error);
     }
-    return null;
+
+    return userResponseData;
   }
 }
