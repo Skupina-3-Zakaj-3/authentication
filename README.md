@@ -38,24 +38,24 @@ $ npm run test:cov
 
 ## Build the image
 
-```
+```bash
 docker build -t authentication .
 ```
 
 ## Create network for all our microservices
 
-```
+```bash
 docker network create rso
 ```
 
 ## Run the container in network
 
-```
+```bash
 docker run -p 3000:3000 -e GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> -e GOOGLE_SECRET=<GOOGLE_SECRET> authentication --name authentication --network="rso" authentication
 ```
 
 ## Run the container from Docker hub in network
 
-```
+```bash
 docker run -p 3000:3000 -e GOOGLE_CLIENT_ID=<GOOGLE_CLIENT_ID> -e GOOGLE_SECRET=<GOOGLE_SECRET> authentication --name authentication --network="rso" anzeha/authentication:latest
 ```
