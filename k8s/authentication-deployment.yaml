@@ -13,7 +13,7 @@ spec:
         app: authentication
     spec:
       containers:
-        - image: anzeha/authentication:latest
+        - image: anzeha/authentication
           name: authentication
           env:
             - name: GOOGLE_CLIENT_ID
