@@ -37,7 +37,7 @@ kind: Service
 metadata:
   name: authentication
 spec:
-  type: LoadBalancer
+  type: ClusterIP
   ports:
     - port: 3000
       protocol: TCP
