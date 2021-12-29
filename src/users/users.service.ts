@@ -21,6 +21,8 @@ export class UsersService {
       'services.user.version',
     )}${GOOGLE_USER_ENDPOINT}`;
     console.log(this.endpoint);
+    //TEST
+    this.endpoint = `http://20.72.172.42/users/v1/users/google`;
   }
   /**
    * Checks if google user exists in our database and creates if it doesn't
