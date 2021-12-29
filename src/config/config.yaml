@@ -6,8 +6,8 @@ http:
   port: 3000
   host: 'localhost'
 
-oauth:
-  callback_url: 'http://localhost:3000/auth/google/redirect' #same as defined in google developer console
+#oauth:
+#  callback_url: 'http://172.18.13.32.nip.io:3000/v1/auth/google/redirect' #same as defined in google developer console
 
 services:
   user:

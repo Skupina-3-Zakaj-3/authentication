@@ -26,6 +26,8 @@ spec:
                 secretKeyRef:
                   name: google-auth
                   key: GOOGLE_SECRET
+            - name: GOOGLE_CALLBACK_URL
+              value: http://20.72.172.42.nip.io/authentication/v1/auth/google/redirect
           ports:
             - containerPort: 3000
               name: server
