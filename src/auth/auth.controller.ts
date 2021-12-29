@@ -30,7 +30,7 @@ export class AuthController {
       req.user as GoogleUser,
     );
 
-    const acces_token = googleUser
+    const access_token = googleUser
       ? this.authService.createJwt(googleUser.id, googleUser.email)
       : '';
     /* if (googleUser) {
@@ -41,15 +41,23 @@ export class AuthController {
         ),
       };
     } */
-
-    let responseHTML =
-      '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>';
-    responseHTML = responseHTML.replace(
-      '%value%',
-      JSON.stringify({
-        acess_token: acces_token,
-      }),
-    );
-    res.status(HttpStatus.OK).send(responseHTML);
+    if (access_token) {
+      let responseHTML =
+        '<html><head><title>Main</title></head><body></body><script>res = %value%; window.opener.postMessage(res, "*");window.close();</script></html>';
+      responseHTML = responseHTML.replace(
+        '%value%',
+        JSON.stringify({
+          access_token: access_token,
+          name: googleUser.name,
+          surname: googleUser.surname,
+          email: googleUser.email,
+        }),
+      );
+      res.status(HttpStatus.OK).send(responseHTML);
+    } else {
+      res
+        .status(HttpStatus.BAD_REQUEST)
+        .send({ message: 'Google login unssuccesful' });
+    }
   }
 }
