@@ -51,6 +51,7 @@ export class AuthController {
           name: googleUser.name,
           surname: googleUser.surname,
           email: googleUser.email,
+          userId: googleUser.id,
         }),
       );
       res.status(HttpStatus.OK).send(responseHTML);
