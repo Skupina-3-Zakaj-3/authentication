@@ -20,5 +20,5 @@ export interface GoogleUser {
   surname: string;
   email: string;
   googleId: string; //google id of user
-  id?: string; //our id of user
+  userId?: string; //our id of user
 }

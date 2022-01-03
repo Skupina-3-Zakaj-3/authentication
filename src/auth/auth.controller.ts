@@ -33,7 +33,7 @@ export class AuthController {
     console.log(googleUser);
 
     const access_token = googleUser
-      ? this.authService.createJwt(googleUser.id, googleUser.email)
+      ? this.authService.createJwt(googleUser.userId, googleUser.email)
       : '';
     /* if (googleUser) {
       return {
@@ -53,7 +53,7 @@ export class AuthController {
           name: googleUser.name,
           surname: googleUser.surname,
           email: googleUser.email,
-          userId: googleUser.id,
+          userId: googleUser.userId,
         }),
       );
       res.status(HttpStatus.OK).send(responseHTML);
