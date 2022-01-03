@@ -29,6 +29,8 @@ export class AuthController {
     const googleUser = await this.userService.findOrCreateGoogleUser(
       req.user as GoogleUser,
     );
+    console.log('trlrlala');
+    console.log(googleUser);
 
     const access_token = googleUser
       ? this.authService.createJwt(googleUser.id, googleUser.email)

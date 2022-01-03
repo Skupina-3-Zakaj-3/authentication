@@ -35,6 +35,8 @@ export class UsersService {
       userResponseData = await lastValueFrom(
         this.httpService.post(this.endpoint, googleUser).pipe(
           map((res) => {
+            console.log('res');
+            console.log(res);
             return res.data as GoogleUser;
           }),
         ),
